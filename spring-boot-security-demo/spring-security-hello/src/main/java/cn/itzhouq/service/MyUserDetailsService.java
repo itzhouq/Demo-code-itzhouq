@@ -1,5 +1,9 @@
 package cn.itzhouq.service;
 
+import cn.itzhouq.entity.Users;
+import cn.itzhouq.mapper.UsersMapper;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.User;
@@ -18,10 +22,21 @@ import java.util.List;
 @Service("userDetailsService")
 public class MyUserDetailsService implements UserDetailsService {
 
+    @Autowired
+    private UsersMapper usersMapper;
 
     @Override
-    public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        // 根据UsersMapper方法根据用户名查询数据库
+        QueryWrapper<Users> usersQueryWrapper = new QueryWrapper<>();
+        usersQueryWrapper.eq("username", username);
+        Users users = usersMapper.selectOne(usersQueryWrapper);
+        if (users == null) {
+            // 数据库没有用户名，认证失败
+            throw new UsernameNotFoundException("用户名不存在");
+        }
+
         List<GrantedAuthority> auths = AuthorityUtils.commaSeparatedStringToAuthorityList("role");
-        return new User("marry", new BCryptPasswordEncoder().encode("123"), auths);
+        return new User(users.getUsername(), new BCryptPasswordEncoder().encode(users.getPassword()), auths);
     }
 }
