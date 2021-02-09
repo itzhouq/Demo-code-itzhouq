@@ -16,4 +16,9 @@ public class TestController {
     public String hello () {
         return "Spring Security Hello!";
     }
+
+    @GetMapping("/index")
+    public String index () {
+        return "index!";
+    }
 }
