@@ -36,7 +36,18 @@ public class SecurityConfig2 extends WebSecurityConfigurerAdapter {
             .defaultSuccessUrl("/test/index").permitAll() // 登录成功跳转的页面
             .and().authorizeRequests()
                 // 设置哪些路径可以直接访问不需要认证
-                .antMatchers("/", "/test/hello", "/user/login").permitAll()
+            // .antMatchers("/", "/test/hello", "/user/login").permitAll()
+            // 当前登录用户，只有具有admins权限才能访问这个路径
+            // .antMatchers("/test/index").hasAuthority("admins")
+
+            // 当前登录用户，只有具有其中一种权限才能访问这个路径
+            // .antMatchers("/test/index").hasAnyAuthority("admins", "manager")
+
+            // 当前登录用户，只有具有sale这个角色才能访问这个路径
+            // .antMatchers("/test/index").hasRole("sale")
+
+            // 当前登录用户，只有具有其中一个角色才能访问这个路径
+            .antMatchers("/test/index").hasAnyRole("sale", "man")
             .anyRequest().authenticated()
             .and().csrf().disable(); // 关闭csrf防护
     }
