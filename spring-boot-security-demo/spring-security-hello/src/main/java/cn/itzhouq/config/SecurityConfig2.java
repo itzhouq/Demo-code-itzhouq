@@ -30,6 +30,8 @@ public class SecurityConfig2 extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // 配置没有权限访问跳转自定义页面
+        http.exceptionHandling().accessDeniedPage("/unauth403.html");
         http.formLogin() // 自定义自己编写的页面
             .loginPage("/login.html") // 登录页面设置
             .loginProcessingUrl("/user/login") // 登录访问路径
