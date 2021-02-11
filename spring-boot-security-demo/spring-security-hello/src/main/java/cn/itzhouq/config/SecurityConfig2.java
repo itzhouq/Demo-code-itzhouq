@@ -30,12 +30,14 @@ public class SecurityConfig2 extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        // 用户注销映射地址
+        http.logout().logoutUrl("/logout").logoutSuccessUrl("/test/hello").permitAll();
         // 配置没有权限访问跳转自定义页面
         http.exceptionHandling().accessDeniedPage("/unauth403.html");
         http.formLogin() // 自定义自己编写的页面
             .loginPage("/login.html") // 登录页面设置
             .loginProcessingUrl("/user/login") // 登录访问路径
-            .defaultSuccessUrl("/test/index").permitAll() // 登录成功跳转的页面
+            .defaultSuccessUrl("/success.html").permitAll() // 登录成功跳转的页面
             .and().authorizeRequests()
                 // 设置哪些路径可以直接访问不需要认证
             // .antMatchers("/", "/test/hello", "/user/login").permitAll()
