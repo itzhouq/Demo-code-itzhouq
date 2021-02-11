@@ -8,6 +8,10 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+
+import javax.sql.DataSource;
 
 /**
  * @author zhouquan
@@ -18,6 +22,19 @@ public class SecurityConfig2 extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserDetailsService userDetailsService;
+
+    @Autowired
+    private DataSource dataSource;
+
+    @Bean
+    public PersistentTokenRepository persistentTokenRepository() {
+        JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
+        jdbcTokenRepository.setDataSource(dataSource);
+        // 自动生成表
+        jdbcTokenRepository.setCreateTableOnStartup(true);
+        return jdbcTokenRepository;
+    }
+
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(passwordEncoder());
@@ -53,6 +70,12 @@ public class SecurityConfig2 extends WebSecurityConfigurerAdapter {
             // 当前登录用户，只有具有其中一个角色才能访问这个路径
             .antMatchers("/test/index").hasAnyRole("sale", "man")
             .anyRequest().authenticated()
+
+            // 配置自动登录
+            .and().rememberMe().tokenRepository(persistentTokenRepository())
+            .tokenValiditySeconds(60) // 设置自动登录的有效时间，单位秒
+            .userDetailsService(userDetailsService)
+
             .and().csrf().disable(); // 关闭csrf防护
     }
 }
