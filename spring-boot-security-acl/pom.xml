@@ -118,6 +118,11 @@
                 <artifactId>json</artifactId>
                 <version>${json.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-security</artifactId>
+                <version>${boot.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
