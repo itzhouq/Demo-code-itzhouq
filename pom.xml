@@ -12,6 +12,7 @@
         <module>spring-boot-dubbo-demo</module>
         <module>spring-boot-security-demo</module>
         <module>spring-security-hello</module>
+        <module>spring-boot-security-acl</module>
     </modules>
     <packaging>pom</packaging>
 
