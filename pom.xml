@@ -11,8 +11,9 @@
     <modules>
         <module>spring-boot-dubbo-demo</module>
         <module>spring-boot-security-demo</module>
-        <module>spring-security-hello</module>
         <module>spring-boot-security-acl</module>
+        <module>spring-boot-docker</module>
+        <module>spring-boot-hello</module>
     </modules>
     <packaging>pom</packaging>
 
