@@ -1,4 +1,4 @@
-package cn.itzhouq.security.entity;
+package cn.itzhouq.security1.entity;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

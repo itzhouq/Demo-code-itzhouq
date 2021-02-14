@@ -1,4 +1,4 @@
-package cn.itzhouq.security.entity;
+package cn.itzhouq.security1.entity;
 
 import lombok.Data;
 import lombok.extern.slf4j.Slf4j;

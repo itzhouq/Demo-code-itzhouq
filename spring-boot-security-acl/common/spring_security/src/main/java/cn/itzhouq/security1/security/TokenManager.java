@@ -1,4 +1,4 @@
-package cn.itzhouq.security.security;
+package cn.itzhouq.security1.security;
 
 import io.jsonwebtoken.CompressionCodecs;
 import io.jsonwebtoken.Jwts;

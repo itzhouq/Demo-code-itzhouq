@@ -1,6 +1,6 @@
-package cn.itzhouq.security.filter;
+package cn.itzhouq.security1.filter;
 
-import cn.itzhouq.security.security.TokenManager;
+import cn.itzhouq.security1.security.TokenManager;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -30,7 +30,7 @@ public class TokenAuthFilter extends BasicAuthenticationFilter {
     private TokenManager tokenManager;
     private RedisTemplate redisTemplate;
 
-    public TokenAuthFilter(AuthenticationManager authenticationManager) {
+    public TokenAuthFilter(AuthenticationManager authenticationManager, TokenManager tokenManager, RedisTemplate redisTemplate) {
         super(authenticationManager);
         this.redisTemplate = redisTemplate;
         this.tokenManager = tokenManager;

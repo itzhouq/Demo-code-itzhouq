@@ -1,8 +1,8 @@
-package cn.itzhouq.security.filter;
+package cn.itzhouq.security1.filter;
 
-import cn.itzhouq.security.entity.SecurityUser;
-import cn.itzhouq.security.entity.User;
-import cn.itzhouq.security.security.TokenManager;
+import cn.itzhouq.security1.entity.SecurityUser;
+import cn.itzhouq.security1.entity.User;
+import cn.itzhouq.security1.security.TokenManager;
 import cn.itzhouq.utils.utils.R;
 import cn.itzhouq.utils.utils.ResponseUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,12 +27,12 @@ import java.util.ArrayList;
  * @author zhouquan
  * @date 2021/2/14 15:25
  */
-public class TokenLoginfilter extends UsernamePasswordAuthenticationFilter {
+public class TokenLoginFilter extends UsernamePasswordAuthenticationFilter {
     private TokenManager tokenManager;
     private RedisTemplate redisTemplate;
     private AuthenticationManager authenticationManager;
 
-    public TokenLoginfilter(AuthenticationManager authenticationManager, TokenManager tokenManager, RedisTemplate redisTemplate) {
+    public TokenLoginFilter(AuthenticationManager authenticationManager, TokenManager tokenManager, RedisTemplate redisTemplate) {
         this.authenticationManager = authenticationManager;
         this.tokenManager = tokenManager;
         this.redisTemplate = redisTemplate;

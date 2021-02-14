@@ -1,4 +1,4 @@
-package cn.itzhouq.security.security;
+package cn.itzhouq.security1.security;
 
 import cn.itzhouq.utils.utils.MD5;
 import org.springframework.security.crypto.password.PasswordEncoder;

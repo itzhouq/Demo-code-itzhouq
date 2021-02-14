@@ -1,4 +1,4 @@
-package cn.itzhouq.security.security;
+package cn.itzhouq.security1.security;
 
 import cn.itzhouq.utils.utils.R;
 import cn.itzhouq.utils.utils.ResponseUtil;
