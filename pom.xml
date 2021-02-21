@@ -14,6 +14,7 @@
         <module>spring-boot-security-acl</module>
         <module>spring-boot-docker</module>
         <module>spring-boot-hello</module>
+        <module>spring-boot-elasticsearch-demo</module>
     </modules>
     <packaging>pom</packaging>
 
