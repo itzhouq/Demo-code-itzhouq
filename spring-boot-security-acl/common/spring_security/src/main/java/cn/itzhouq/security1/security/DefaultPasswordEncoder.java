@@ -2,12 +2,15 @@ package cn.itzhouq.security1.security;
 
 import cn.itzhouq.utils.utils.MD5;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Component;
 
-/**密码处理
+/**
+ * 密码处理
+ *
  * @author zhouquan
  * @date 2021/2/14 14:46
  */
-
+@Component
 public class DefaultPasswordEncoder implements PasswordEncoder {
 
     public DefaultPasswordEncoder() {
